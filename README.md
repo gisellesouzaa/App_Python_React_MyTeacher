@@ -1,4 +1,6 @@
-<h1 align="center">My Teacher</h1>
+<div align="center" style="background-color: white">
+  <img alt=""MyTeacher" src="./public/images/myteacher.png" width="200" />
+</div>
 
 <p align="center">Repositório Front-end do projeto Fullstack React + Python.</p>
 

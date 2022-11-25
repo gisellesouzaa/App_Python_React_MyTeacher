@@ -1,9 +1,10 @@
-import { Box, Button, Dialog, DialogActions, Grid, Snackbar, TextField } from '@mui/material'
+import { Box, Button, Dialog, DialogActions, Grid, TextField } from '@mui/material'
 import type { NextPage } from 'next'
 import Lista from '../src/components/Lista/Lista'
+import ListaAula from '../src/components/ListaAula/ListaAula';
 import { useIndex } from '../src/hooks/pages/useIndex';
 
-const Home: NextPage = () => {
+const Aulas: NextPage = () => {
   const { 
     listaProfessores, 
     nome, 
@@ -12,18 +13,13 @@ const Home: NextPage = () => {
     setEmail, 
     professorSelecionado,
     setProfessorSelecionado,
-    marcarAula,
-    mensagem, 
-    setMensagem
+    marcarAula
   } = useIndex();
 
   return (
     <>
       <Box sx={{ backgroundColor: 'secondary.main' }}>
-        <Lista 
-          professores={listaProfessores}
-          onSelect={(professor) => setProfessorSelecionado(professor)}
-          ></Lista>
+        <ListaAula></ListaAula>
       </Box>
 
       <Dialog onClose={() => setProfessorSelecionado(null)} open={professorSelecionado !== null} fullWidth PaperProps={{sx: {p:5}}}>
@@ -53,16 +49,8 @@ const Home: NextPage = () => {
           <Button onClick={() => marcarAula()}>Marcar</Button>
         </DialogActions>
       </Dialog>
-
-      <Snackbar 
-        message={mensagem} 
-        open={mensagem.length > 0}
-        autoHideDuration={2500}
-        onClose={() => setMensagem('')}
-      />
-
     </>
   )
 }
 
-export default Home
+export default Aulas

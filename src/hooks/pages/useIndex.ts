@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { Aula } from "../../@types/aula";
 import { Professor } from "../../@types/professor";
 import { ApiService } from "../../services/ApiService";
 
 export function useIndex() {
     const [listaProfessores, setListaProfessores] = useState<Professor[]>([]);
+    const [listaAulas, setListaAulas] = useState<Aula[]>([]);
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [professorSelecionado, setProfessorSelecionado] = useState<Professor | null>(null);
@@ -16,8 +18,15 @@ export function useIndex() {
     }, []);
 
     useEffect(() => {
+        ApiService.get('/aulas').then((resposta) => {
+            setListaAulas(resposta.data)
+        })
+    }, []);
+
+    useEffect(() => {
         limparFormulario();
     }, [professorSelecionado]);
+
 
     function marcarAula() {
         if (professorSelecionado !== null) {
@@ -46,6 +55,8 @@ export function useIndex() {
         setEmail('');
     }
 
+    
+
     return {
         listaProfessores,
         nome,
@@ -56,6 +67,8 @@ export function useIndex() {
         setProfessorSelecionado,
         marcarAula,
         mensagem,
-        setMensagem
+        setMensagem,
+        listaAulas,
+        setListaAulas
     }
 }

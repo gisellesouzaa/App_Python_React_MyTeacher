@@ -26,6 +26,8 @@ export const ItemLista = styled('li')`
 
 export const Foto = styled('img')`
     width: 100%;
+    box-shadow: -1px 1px 8px 1px #74747466;
+    border-radius: 8px ;
 `;
 
 export const Informacoes = styled('div')``;

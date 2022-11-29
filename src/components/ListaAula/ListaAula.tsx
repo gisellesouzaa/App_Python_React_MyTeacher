@@ -1,30 +1,51 @@
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { NextPage } from "next";
+import Aulas from "../../../pages/aulas";
+import { Aula } from "../../@types/aula";
+import { useIndex } from "../../hooks/pages/useIndex";
 
-const ListaAula = () => {
-    return (
-        <div>
-            <h2>Listagem de aulas agendadas</h2>
-            <table className="dsmeta-sales-table">
-                <thead>
-                    <tr>
-                        <th>Nome do aluno</th>
-                        <th>Email</th>
-                        <th>Professor</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td>Giselle Souza</td>
-                        <td>giselle_souza@gmail.com</td>
-                        <td>Mayk Brito</td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-
-        </div>
-    )
+interface ListaAulaProps {
+    aulas: Aula[]
 }
+
+// function ListaAula() {
+//     const {
+//         listaAulas
+//     } = useIndex();
+// }
+
+    const ListaAula = (props: ListaAulaProps) => {
+        return (
+            <div>
+                {/* // <h2>Listagem de aulas agendadas</h2> */}
+                <TableContainer component={Paper} variant="outlined" sx={{ m: 2, width: 'auto' }}>
+                    <Table>
+
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Nome do aluno</TableCell>
+                                <TableCell>Email</TableCell>
+                                <TableCell>Professor</TableCell>
+                            </TableRow>
+                        </TableHead>
+
+                        <TableBody>
+                            {props.aulas.map(aula => (
+                                <TableRow>
+                                    <TableCell>{aula.nome}</TableCell>
+                                    <TableCell>{aula.email}</TableCell>
+                                    <TableCell>{aula.professor}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                {/* {props.aulas.length > 0 ? (
+                ) : (
+                    <div>Nenhum item encontrado</div>
+                )} */}
+            </div>
+        );
+    };
 
 export default ListaAula;

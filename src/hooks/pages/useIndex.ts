@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { Aula } from "../../@types/aula";
 import { Professor } from "../../@types/professor";
 import { ApiService } from "../../services/ApiService";
 
 export function useIndex() {
     const [listaProfessores, setListaProfessores] = useState<Professor[]>([]);
-    const [listaAulas, setListaAulas] = useState<Aula[]>([]);
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [professorSelecionado, setProfessorSelecionado] = useState<Professor | null>(null);
@@ -14,12 +12,6 @@ export function useIndex() {
     useEffect(() => {
         ApiService.get('/professores').then((resposta) => {
             setListaProfessores(resposta.data)
-        })
-    }, []);
-
-    useEffect(() => {
-        ApiService.get('/aulas').then((resposta) => {
-            setListaAulas(resposta.data)
         })
     }, []);
 
@@ -68,7 +60,5 @@ export function useIndex() {
         marcarAula,
         mensagem,
         setMensagem,
-        listaAulas,
-        setListaAulas
     }
 }

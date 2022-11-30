@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import Aulas from "../../../pages/aulas";
 import { Aula } from "../../@types/aula";
 import { useIndex } from "../../hooks/pages/useIndex";
+import { ListaVazia } from "./ListaAula.style";
 
 interface ListaAulaProps {
     aulas: Aula[]
@@ -14,10 +15,11 @@ interface ListaAulaProps {
 //     } = useIndex();
 // }
 
-    const ListaAula = (props: ListaAulaProps) => {
-        return (
-            <div>
-                {/* // <h2>Listagem de aulas agendadas</h2> */}
+const ListaAula = (props: ListaAulaProps) => {
+    return (
+        <div>
+            {props.aulas.length > 0 ? (
+                // <h2>Listagem de aulas agendadas</h2> 
                 <TableContainer component={Paper} variant="outlined" sx={{ m: 2, width: 'auto' }}>
                     <Table>
 
@@ -31,7 +33,7 @@ interface ListaAulaProps {
 
                         <TableBody>
                             {props.aulas.map(aula => (
-                                <TableRow>
+                                <TableRow key={aula.id}>
                                     <TableCell>{aula.nome}</TableCell>
                                     <TableCell>{aula.email}</TableCell>
                                     <TableCell>{aula.professor}</TableCell>
@@ -40,12 +42,12 @@ interface ListaAulaProps {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                {/* {props.aulas.length > 0 ? (
-                ) : (
-                    <div>Nenhum item encontrado</div>
-                )} */}
-            </div>
-        );
-    };
+
+            ) : (
+                <ListaVazia>Nenhum item encontrado</ListaVazia>
+            )}
+        </div>
+    );
+};
 
 export default ListaAula;

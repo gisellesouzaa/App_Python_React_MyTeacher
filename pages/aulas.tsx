@@ -1,28 +1,18 @@
-import { Box, Button, Dialog, DialogActions, Grid, TextField } from '@mui/material';
+import { Box } from '@mui/material';
 import type { NextPage } from 'next';
+import { CabecalhoContainer } from '../src/components/Cabecalho/Cabecalho.style';
 import ListaAula from '../src/components/ListaAula/ListaAula';
 import { useAulas } from '../src/hooks/pages/useAulas';
-import { useIndex } from '../src/hooks/pages/useIndex';
 
-// const Aulas: NextPage = () => {
-//   const { 
-//     listaProfessores, 
-//     nome, 
-//     setNome, 
-//     email, 
-//     setEmail, 
-//     professorSelecionado,
-//     setProfessorSelecionado,
-//     marcarAula,
-//     listaAulas, 
-//     setListaAulas
-//   } = useIndex();
 
 const Aulas: NextPage = () => {
   const {listaAulas} = useAulas(); 
 
   return (
     <>
+      <CabecalhoContainer>
+        <p>Aqui você encontra todos os agendamentos realizados no nosso banco de dados.</p>
+      </CabecalhoContainer>
       <Box sx={{ backgroundColor: 'secondary.main' }}>
         <ListaAula aulas={listaAulas}></ListaAula>
       </Box>

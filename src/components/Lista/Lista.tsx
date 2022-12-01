@@ -20,7 +20,7 @@ const Lista = (props: ListaProps) => {
                                 <Nome>{professor.nome}</Nome>
                                 <Valor>{FormatadorService.valorMonetario(professor.valor_hora)} por hora</Valor>
                                 <Descricao>{FormatadorService.limitarTexto(professor.descricao, 200)}</Descricao>
-                                <Button onClick={() => props.onSelect(professor)} sx={{ width: '70%'}}>Marcar Aula com {professor.nome}</Button>
+                                <Button onClick={() => props.onSelect(professor)} sx={{ width: '70%'}}>Marcar Aula com {professor.nome.split(' ')[0]}</Button>
                             </Informacoes>
                         </ItemLista>
                     ))}
